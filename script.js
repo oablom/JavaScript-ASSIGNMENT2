@@ -16,10 +16,10 @@ const account = {
     }
   },
   withdrawal: function (cashOut) {
-    if (typeof cashOut === "number" && cashOut > 0) {
-      this.balance = this.balance - cashOut;
-      return cashOut;
-    } else if (cashOut > this.balance + cashOut) {
+    if (
+      (typeof cashOut === "number" && cashOut > 0) ||
+      cashOut > this.balance + cashOut //cashOut > this.balance + cashOut var nödvändig att ha med här för att den skulle vilja sätta tillbaka ett försök till uttag (uttag som överstiger kontobalansen)
+    ) {
       this.balance = this.balance - cashOut;
       return cashOut;
     }
